@@ -1,0 +1,9 @@
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\bin\Debug\GuiConv.exe.config
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\bin\Debug\GuiConv.exe
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\bin\Debug\GuiConv.pdb
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.Form1.resources
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.Properties.Resources.resources
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.csproj.GenerateResource.cache
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.csproj.CoreCompileInputs.cache
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.exe
+D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.pdb
