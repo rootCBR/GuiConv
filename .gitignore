@@ -5,6 +5,7 @@ bin/*.exe
 bin/*.pdb
 */bin/Debug/
 */bin/Release/
+obj/
 */obj/Debug/
 */obj/Release/
 */obj/x86/

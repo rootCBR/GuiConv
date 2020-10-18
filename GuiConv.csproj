@@ -69,7 +69,14 @@
     <Compile Include="Source\ValueHandlers\FNV64Handler_WD1.cs" />
     <Compile Include="Source\ValueHandlers\FVN64Handler.cs" />
     <Compile Include="Source\ValueHandlers\HexHandler.cs" />
+    <Compile Include="Source\ValueHandlers\Int16Handler.cs" />
+    <Compile Include="Source\ValueHandlers\Int32Handler.cs" />
+    <Compile Include="Source\ValueHandlers\Int64Handler.cs" />
+    <Compile Include="Source\ValueHandlers\IntHandler.cs" />
     <Compile Include="Source\ValueHandlers\StringHandler.cs" />
+    <Compile Include="Source\ValueHandlers\UInt16Handler.cs" />
+    <Compile Include="Source\ValueHandlers\UInt32Handler.cs" />
+    <Compile Include="Source\ValueHandlers\UInt64Handler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>

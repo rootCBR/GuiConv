@@ -12,7 +12,20 @@ namespace GuiConv.Source.ValueHandlers
         // from float
         public override string Deserialize(string i_string)
         {
-            return i_string;
+            float r_float = 0;
+            string o_string = "";
+
+            if (float.TryParse(i_string, NumberStyles.Any, null, out r_float))
+            {
+                byte[] bytes = BitConverter.GetBytes(r_float);
+
+                if (bytes.Length == 4)
+                {
+                    o_string = i_string;
+                }
+            }
+
+            return o_string;
         }
 
         // to float

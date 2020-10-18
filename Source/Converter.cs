@@ -9,6 +9,8 @@ namespace GuiConv
     public class Converter
     {
         public static bool UseBigEndian = false;
+        public static ValueType InputType;
+        public static ValueType OutputType;
 
         public static readonly Dictionary<ValueType, ValueTypeInfo> ValueTypes = new Dictionary<ValueType, ValueTypeInfo>
         {
@@ -31,13 +33,73 @@ namespace GuiConv
                 name = "Hex",
                 compatibility = ValueTypeCompatibility.Both,
                 typesAllowSwitchEndian = new ValueType[] {
-                        ValueType.Float
+                        ValueType.Int,
+                        ValueType.Float,
+                        ValueType.Int16,
+                        ValueType.Int32,
+                        ValueType.Int64,
+                        ValueType.UInt16,
+                        ValueType.UInt32,
+                        ValueType.UInt64
                 },
             },
             [ValueType.Float] = new ValueTypeInfo
             {
                 handler = new Source.ValueHandlers.FloatHandler(),
                 name = "Float",
+                compatibility = ValueTypeCompatibility.Both,
+                typesAllowSwitchEndian = new ValueType[] {
+                        ValueType.Hex
+                },
+            },
+            [ValueType.Int] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.IntHandler(),
+                name = "Int",
+                compatibility = ValueTypeCompatibility.Input,
+                typesAllowSwitchEndian = new ValueType[] {
+                        ValueType.Hex
+                },
+            },
+            [ValueType.Int16] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.Int16Handler(),
+                name = "Int16",
+                compatibility = ValueTypeCompatibility.Output,
+                typesAllowSwitchEndian = new ValueType[] { },
+            },
+            [ValueType.Int32] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.Int32Handler(),
+                name = "Int32",
+                compatibility = ValueTypeCompatibility.Output,
+                typesAllowSwitchEndian = new ValueType[] { },
+            },
+            [ValueType.Int64] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.Int64Handler(),
+                name = "Int64",
+                compatibility = ValueTypeCompatibility.Output,
+                typesAllowSwitchEndian = new ValueType[] { },
+            },
+            [ValueType.UInt16] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.UInt16Handler(),
+                name = "UInt16",
+                compatibility = ValueTypeCompatibility.Output,
+                typesAllowSwitchEndian = new ValueType[] { },
+            },
+            [ValueType.UInt32] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.UInt32Handler(),
+                name = "UInt32",
+                compatibility = ValueTypeCompatibility.Output,
+                typesAllowSwitchEndian = new ValueType[] { },
+            },
+            [ValueType.UInt64] = new ValueTypeInfo
+            {
+                handler = new Source.ValueHandlers.UInt64Handler(),
+                name = "UInt64",
                 compatibility = ValueTypeCompatibility.Output,
                 typesAllowSwitchEndian = new ValueType[] { },
             },
@@ -75,7 +137,7 @@ namespace GuiConv
                 name = "FNV64 (WD1)",
                 compatibility = ValueTypeCompatibility.Output,
                 typesAllowSwitchEndian = new ValueType[] { },
-            },
+            }
         };
 
         public struct ValueTypeInfo
@@ -100,6 +162,7 @@ namespace GuiConv
             Decimal,
             Hex,
             Float,
+            Int,
             Int8,
             Int16,
             Int32,
@@ -134,6 +197,9 @@ namespace GuiConv
         
         public static string Convert(ValueType inputValueType, ValueType outputValueType, string value)
         {
+            InputType = inputValueType;
+            OutputType = outputValueType;
+
             var deserializeHandler = ValueTypes[inputValueType].handler as IValueHandler;
             var serializeHandler = ValueTypes[outputValueType].handler as IValueHandler;
 
@@ -203,7 +269,7 @@ namespace GuiConv
             {
                 foreach (ValueType type in valueTypeInfo.Value.typesAllowSwitchEndian)
                 {
-                    Console.WriteLine($"Get allow switch endian\n\tinput: {inputValueType}\n\toutput: {outputValueType}\n\tcurrent: {type}");
+                    //Console.WriteLine($"Get allow switch endian\n\tinput: {inputValueType}\n\toutput: {outputValueType}\n\tcurrent: {type}");
 
                     if (valueTypeInfo.Key == inputValueType &&
                         type == outputValueType)

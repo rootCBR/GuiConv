@@ -13,5 +13,10 @@ namespace GuiConv.Source
         {
             return Regex.IsMatch(hex, @"\A\b[0-9a-fA-F]+\b\Z");
         }
+
+        public static string RemoveWhitespace(string input)
+        {
+            return Regex.Replace(input, @"\s+", "");
+        }
     }
 }
