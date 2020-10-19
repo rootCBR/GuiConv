@@ -42,17 +42,18 @@ namespace GuiConv.Source.ValueHandlers
                     {
                         Console.WriteLine("Valid hex input (float)");
 
-                        byte[] bytes = BitConverter.GetBytes(r_float);
+                        int i = int.Parse(hex, NumberStyles.AllowHexSpecifier);
+
+                        byte[] bytes = BitConverter.GetBytes(i);
 
                         if (Converter.UseBigEndian == true)
                         {
                             bytes = bytes.Reverse().ToArray();
                         }
 
-                        Console.WriteLine($"Hex input (float#{bytes.Length}): {r_float}");
+                        float f = BitConverter.ToSingle(bytes, 0);
 
-                        //return Convert.ToString(r_float, CultureInfo.InvariantCulture.NumberFormat);
-                        return BitConverter.ToString(bytes).Replace("-", "");
+                        return Convert.ToString(f, CultureInfo.InvariantCulture.NumberFormat);
                     }
                 }
                 else if (ushort.TryParse(hex, NumberStyles.AllowHexSpecifier, null, out r_ushort))
@@ -119,9 +120,10 @@ namespace GuiConv.Source.ValueHandlers
         public override string Serialize(string ascii)
         {
             float r_float = 0;
-            short r_short = 0;
-            int r_int = 0;
-            long r_long = 0;
+            ushort r_ushort = 0;
+            uint r_uint = 0;
+            ulong r_ulong = 0;
+            decimal r_test = 0;
 
             if (Converter.InputType == Converter.ValueType.Float)
             {
@@ -144,14 +146,16 @@ namespace GuiConv.Source.ValueHandlers
             }
             else if (Converter.InputType == Converter.ValueType.Int)
             {
-                if (short.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_short))
+                Console.WriteLine("From Int to Hex");
+
+                if (ushort.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_ushort))
                 {
                     // int16
                     Console.WriteLine($"Valid string input (short)");
 
                     string o_string = "";
 
-                    byte[] bytes = BitConverter.GetBytes(r_short);
+                    byte[] bytes = BitConverter.GetBytes(r_ushort);
 
                     if (Converter.UseBigEndian == true)
                     {
@@ -181,12 +185,12 @@ namespace GuiConv.Source.ValueHandlers
 
                     return o_string;
                 }
-                else if (int.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_int))
+                else if (uint.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_uint))
                 {
                     // int32
                     Console.WriteLine($"Valid string input (int)");
 
-                    byte[] bytes = BitConverter.GetBytes(r_int);
+                    byte[] bytes = BitConverter.GetBytes(r_uint);
 
                     if (Converter.UseBigEndian == true)
                     {
@@ -197,21 +201,25 @@ namespace GuiConv.Source.ValueHandlers
 
                     return $"{o_int:X8}";
                 }
-                else if (long.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_long))
+                else if (ulong.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_ulong))
                 {
                     // int64
                     Console.WriteLine($"Valid string input (long)");
 
-                    byte[] bytes = BitConverter.GetBytes(r_long);
+                    byte[] bytes = BitConverter.GetBytes(r_ulong);
 
                     if (Converter.UseBigEndian == true)
                     {
                         bytes = bytes.Reverse().ToArray();
                     }
 
-                    long o_long = BitConverter.ToInt64(bytes, 0);
+                    ulong o_long = BitConverter.ToUInt64(bytes, 0);
 
                     return $"{o_long:X16}";
+                }
+                else
+                {
+                    Console.WriteLine("Could not recognize Int value");
                 }
             }
             else

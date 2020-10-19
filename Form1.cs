@@ -55,7 +55,7 @@ namespace GuiConv
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            InitConvert();
+            //InitConvert();
         }
 
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
@@ -125,7 +125,7 @@ namespace GuiConv
 
             SetEndianCheckbox(AllowSwitchEndian);
 
-            InitConvert();
+            //InitConvert();
         }
 
         private void SetEndianCheckbox(bool enable)

@@ -46,7 +46,7 @@ namespace GuiConv.Source.ValueHandlers
                 o_string = r_float.ToString().Replace(",", ".");
             }
 
-            return o_string;
+            return i_string;
         }
     }
 }
