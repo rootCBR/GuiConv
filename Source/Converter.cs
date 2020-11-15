@@ -20,11 +20,11 @@ namespace GuiConv
                 name = "String",
                 compatibility = ValueTypeCompatibility.Both,
                 typesAllowSwitchEndian = new ValueType[] {
-                        ValueType.CRC32,
-                        ValueType.CRC64,
-                        ValueType.CRC64_WD2,
-                        ValueType.FNV64,
-                        ValueType.FNV64_WD1
+                    ValueType.CRC32,
+                    ValueType.CRC64,
+                    ValueType.CRC64_WD2,
+                    ValueType.FNV64,
+                    ValueType.FNV64_WD1
                 },
             },
             [ValueType.Hex] = new ValueTypeInfo
@@ -33,6 +33,7 @@ namespace GuiConv
                 name = "Hex",
                 compatibility = ValueTypeCompatibility.Both,
                 typesAllowSwitchEndian = new ValueType[] {
+                        ValueType.Hex,
                         ValueType.Int,
                         ValueType.Float,
                         ValueType.Int16,

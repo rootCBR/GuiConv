@@ -21,7 +21,25 @@ namespace GuiConv.Source.ValueHandlers
                 float r_float = 0;
                 ulong r_ulong = 0;
 
-                if (Converter.OutputType == Converter.ValueType.String)
+                if (Converter.OutputType == Converter.ValueType.Hex)
+                {
+                    // TO DO: support 8+ byte inputs
+                    Console.WriteLine("Valid hex input (hex)");
+
+                    int i = int.Parse(hex, NumberStyles.AllowHexSpecifier);
+
+                    byte[] bytes = BitConverter.GetBytes(i);
+
+                    if (Converter.UseBigEndian == true)
+                    {
+                        bytes = bytes.Reverse().ToArray();
+                    }
+
+                    string f = BitConverter.ToString(bytes);
+
+                    return BitConverter.ToString(bytes).Replace("-", "");
+                }
+                else if (Converter.OutputType == Converter.ValueType.String)
                 {
                     Console.WriteLine("Valid hex input (ascii)");
 
@@ -38,23 +56,20 @@ namespace GuiConv.Source.ValueHandlers
                 }
                 else if (Converter.OutputType == Converter.ValueType.Float)
                 {
-                    if (float.TryParse(hex, NumberStyles.Number, null, out r_float))
+                    Console.WriteLine("Valid hex input (float)");
+
+                    int i = int.Parse(hex, NumberStyles.AllowHexSpecifier);
+
+                    byte[] bytes = BitConverter.GetBytes(i);
+
+                    if (Converter.UseBigEndian == true)
                     {
-                        Console.WriteLine("Valid hex input (float)");
-
-                        int i = int.Parse(hex, NumberStyles.AllowHexSpecifier);
-
-                        byte[] bytes = BitConverter.GetBytes(i);
-
-                        if (Converter.UseBigEndian == true)
-                        {
-                            bytes = bytes.Reverse().ToArray();
-                        }
-
-                        float f = BitConverter.ToSingle(bytes, 0);
-
-                        return Convert.ToString(f, CultureInfo.InvariantCulture.NumberFormat);
+                        bytes = bytes.Reverse().ToArray();
                     }
+
+                    float f = BitConverter.ToSingle(bytes, 0);
+
+                    return Convert.ToString(f, CultureInfo.InvariantCulture.NumberFormat);
                 }
                 else if (ushort.TryParse(hex, NumberStyles.AllowHexSpecifier, null, out r_ushort))
                 {
@@ -125,7 +140,11 @@ namespace GuiConv.Source.ValueHandlers
             ulong r_ulong = 0;
             decimal r_test = 0;
 
-            if (Converter.InputType == Converter.ValueType.Float)
+            if (Converter.InputType == Converter.ValueType.Hex)
+            {
+                return ascii;
+            }
+            else if (Converter.InputType == Converter.ValueType.Float)
             {
                 // float
                 if (float.TryParse(ascii, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out r_float))

@@ -7,4 +7,3 @@ D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.csproj.Ge
 D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.csproj.CoreCompileInputs.cache
 D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.exe
 D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.pdb
-D:\Modding\Disrupt\Tools\Repos\_Test\GuiConv\GuiConv\obj\Debug\GuiConv.csprojAssemblyReference.cache

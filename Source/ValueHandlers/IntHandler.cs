@@ -12,23 +12,23 @@ namespace GuiConv.Source.ValueHandlers
         // from int
         public override string Deserialize(string i_string)
         {
-            short r_short = 0;
-            int r_int = 0;
-            long r_long = 0;
+            ushort r_ushort = 0;
+            uint r_uint = 0;
+            ulong r_ulong = 0;
 
             string o_string = "";
 
-            if (short.TryParse(i_string, NumberStyles.Integer, null, out r_short))
+            if (ushort.TryParse(i_string, NumberStyles.Integer, null, out r_ushort))
             {
-                o_string = r_short.ToString();
+                o_string = r_ushort.ToString();
             }
-            else if (int.TryParse(i_string, NumberStyles.Integer, null, out r_int))
+            else if (uint.TryParse(i_string, NumberStyles.Integer, null, out r_uint))
             {
-                o_string = r_int.ToString();
+                o_string = r_uint.ToString();
             }
-            else if (long.TryParse(i_string, NumberStyles.Integer, null, out r_long))
+            else if (ulong.TryParse(i_string, NumberStyles.Integer, null, out r_ulong))
             {
-                o_string = r_long.ToString();
+                o_string = r_ulong.ToString();
             }
 
             return o_string;
