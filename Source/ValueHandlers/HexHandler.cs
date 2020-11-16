@@ -26,9 +26,19 @@ namespace GuiConv.Source.ValueHandlers
                     // TO DO: support 8+ byte inputs
                     Console.WriteLine("Valid hex input (hex)");
 
-                    int i = int.Parse(hex, NumberStyles.AllowHexSpecifier);
+                    byte[] bytes = new byte[0];
 
-                    byte[] bytes = BitConverter.GetBytes(i);
+                    int r_int;
+                    long r_long;
+
+                    if (int.TryParse(hex, NumberStyles.AllowHexSpecifier, null, out r_int))
+                    {
+                        bytes = BitConverter.GetBytes(r_int);
+                    }
+                    else if (long.TryParse(hex, NumberStyles.AllowHexSpecifier, null, out r_long))
+                    {
+                        bytes = BitConverter.GetBytes(r_long);
+                    }
 
                     if (Converter.UseBigEndian == true)
                     {
